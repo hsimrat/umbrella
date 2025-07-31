@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- ASP‑Versioning MVC still fine on 8.x -->
+		<PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
+
+		<!-- Test stack pinned to .NET 8‑compatible versions -->
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.6" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+		<PackageReference Include="coverlet.collector" Version="6.0.2" />
+
+		<!-- Assertion / mocking libraries -->
+		<PackageReference Include="FluentAssertions" Version="6.12.0" />
+		<PackageReference Include="Moq" Version="4.20.72" />
+
+		<!-- xUnit runner + framework -->
+		<PackageReference Include="xunit" Version="2.8.2" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\TechScriptAid.API\TechScriptAid.API.csproj" />
+	  <ProjectReference Include="..\..\src\TechScriptAid.Core\TechScriptAid.Core.csproj" />
+	</ItemGroup>
+
+</Project>

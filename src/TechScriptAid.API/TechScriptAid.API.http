@@ -1,0 +1,6 @@
+@TechScriptAid.API_HostAddress = http://localhost:5272
+
+GET {{TechScriptAid.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "5000:80"
+      - "5001:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - AI__Provider=AzureOpenAI
+      - ConnectionStrings__Redis=redis:6379
+    depends_on:
+      - redis
+      - sqlserver
+    networks:
+      - techscriptaid-network
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - techscriptaid-network
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Password123
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    networks:
+      - techscriptaid-network
+
+  seq:
+    image: datalust/seq:latest
+    ports:
+      - "5341:80"
+    environment:
+      - ACCEPT_EULA=Y
+    volumes:
+      - seq-data:/data
+    networks:
+      - techscriptaid-network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - techscriptaid-network
+
+networks:
+  techscriptaid-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  sqlserver-data:
+  seq-data:
+  grafana-data:
