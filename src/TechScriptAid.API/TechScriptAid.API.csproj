@@ -7,6 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="appsettings.Development.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\TechScriptAid.AI\TechScriptAid.AI.csproj" />
 		<ProjectReference Include="..\TechScriptAid.Core\TechScriptAid.Core.csproj" />
 		<ProjectReference Include="..\TechScriptAid.Infrastructure\TechScriptAid.Infrastructure.csproj" />
